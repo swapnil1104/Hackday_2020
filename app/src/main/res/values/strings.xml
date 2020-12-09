@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HackDaySamples</string>
+    <string name="search_query">Search for movies..</string>
 </resources>
