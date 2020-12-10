@@ -81,4 +81,7 @@ public class MovieDetails {
 
     @SerializedName("Response")
     public String response;
+
+    @SerializedName("Error")
+    public String errorMsg;
 }

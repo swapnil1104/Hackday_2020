@@ -1,13 +1,23 @@
 package com.flipkart.hackdaysamples.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.flipkart.hackdaysamples.R;
+import com.flipkart.hackdaysamples.data.ApiClient;
+import com.flipkart.hackdaysamples.data.ApiService;
+import com.flipkart.hackdaysamples.data.models.SearchResponse;
+import com.google.gson.Gson;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -15,6 +25,11 @@ public class SearchActivity extends AppCompatActivity {
      * editMovieQuery will store the view reference of EditText that was inflated in setContentView() method
      */
     private EditText editMovieQuery;
+
+    /**
+     * Instance of ApiService which will be used to invoke the declared api endpoints.
+     */
+    private final ApiService apiService = ApiClient.getInstance().create(ApiService.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +54,7 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // TODO:: Make API call with the new query string
+                updateMovieList(s.toString());
             }
 
             @Override
@@ -48,4 +63,44 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
     }
+
+    /*
+     * Networking call on Android platform can not be triggered on the main thread,
+     * There are many ways to perform the network call;
+     * - AsyncTasks https://developer.android.com/reference/android/os/AsyncTask
+     * - Runnable https://developer.android.com/reference/java/lang/Runnable
+     * - Threads https://developer.android.com/reference/java/lang/Thread
+     * - Coroutines https://kotlinlang.org/docs/reference/coroutines-overview.html (Kotlin Only)
+     *
+     * We will use a Thread invoke 'apiService.getSearchResults()' and show the api response in Toast Ui.
+     */
+    private void updateMovieList(String queryString) {
+        new Thread(() -> {
+            Call<SearchResponse> call = apiService.getSearchResults(queryString);
+            call.enqueue(new Callback<SearchResponse>() {
+                @Override
+                public void onResponse(@NonNull Call<SearchResponse> call, @NonNull Response<SearchResponse> response) {
+
+                    // Java models can directly be retrieved from response by invoking 'body()'
+                    SearchResponse searchResponse = response.body();
+
+                    // What is a Toast?
+                    // Refer detailed doc: https://developer.android.com/guide/topics/ui/notifiers/toasts
+                    if (searchResponse != null && searchResponse.errorMsg != null && searchResponse.errorMsg.equalsIgnoreCase("true")) {
+                        Toast.makeText(getApplicationContext(), new Gson().toJson(searchResponse.errorMsg), Toast.LENGTH_LONG).show();
+                    } else {
+                        // Todo:: render the search results in a RecyclerView.
+                    }
+
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<SearchResponse> call, @NonNull Throwable t) {
+                    Toast.makeText(getApplicationContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }).start();
+    }
+
+
 }
