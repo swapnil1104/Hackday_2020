@@ -94,6 +94,7 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                editMovieQuery.setError(null);
                 updateMovieList(s.toString());
             }
 
@@ -124,10 +125,13 @@ public class SearchActivity extends AppCompatActivity {
                     // Java models can directly be retrieved from response by invoking 'body()'
                     SearchResponse searchResponse = response.body();
 
-                    // What is a Toast?
-                    // Refer detailed doc: https://developer.android.com/guide/topics/ui/notifiers/toasts
                     if (searchResponse != null && searchResponse.errorMsg != null) {
-                        Toast.makeText(getApplicationContext(), new Gson().toJson(searchResponse.errorMsg), Toast.LENGTH_LONG).show();
+                        if (searchResponse.errorMsg.equalsIgnoreCase("too many results.")) {
+                            editMovieQuery.setError("Please enter more characters");
+                        } else if (searchResponse.errorMsg.equalsIgnoreCase("movie not found!")) {
+                            editMovieQuery.setError(searchResponse.errorMsg);
+                        }
+                        recyclerAdapter.clearSearchResults();
                     } else {
                         if (searchResponse != null && searchResponse.searches != null && searchResponse.searches.size() > 0) {
                             recyclerAdapter.updateSearchResults(searchResponse.searches);

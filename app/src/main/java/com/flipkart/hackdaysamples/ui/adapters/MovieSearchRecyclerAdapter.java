@@ -40,6 +40,11 @@ public class MovieSearchRecyclerAdapter extends RecyclerView.Adapter<MovieSearch
         this.searchResults = searchResults;
     }
 
+    public void clearSearchResults() {
+        this.searchResults.clear();
+        notifyDataSetChanged();
+    }
+
     public void updateSearchResults(ArrayList<Search> searchResults) {
         this.searchResults.clear();
         this.searchResults.addAll(searchResults);
