@@ -4,4 +4,12 @@
     <string name="placeholder_title">Placeholder title</string>
     <string name="placeholder_year">Placeholder year</string>
     <string name="details">Details</string>
+    <string name="title">Title:</string>
+    <string name="year">Year:</string>
+    <string name="director">Director:</string>
+    <string name="plot">Plot:</string>
+    <string name="languages">Languages:</string>
+    <string name="actors">Actors:</string>
+    <string name="writers">Writers:</string>
+    <string name="genre">Genre:</string>
 </resources>
