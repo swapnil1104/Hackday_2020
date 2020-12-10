@@ -15,6 +15,7 @@ import com.flipkart.hackdaysamples.R;
 import com.flipkart.hackdaysamples.data.ApiClient;
 import com.flipkart.hackdaysamples.data.ApiService;
 import com.flipkart.hackdaysamples.data.models.SearchResponse;
+import com.flipkart.hackdaysamples.ui.adapters.MovieAdapterInteractionListener;
 import com.flipkart.hackdaysamples.ui.adapters.MovieSearchRecyclerAdapter;
 import com.google.gson.Gson;
 
@@ -37,6 +38,13 @@ public class SearchActivity extends AppCompatActivity {
 
     private MovieSearchRecyclerAdapter recyclerAdapter = new MovieSearchRecyclerAdapter(this);
 
+    private MovieAdapterInteractionListener interactionListener = new MovieAdapterInteractionListener() {
+        @Override
+        public void onTitleClicked(String imdbId) {
+            // Todo:: launch the a new activity and provide the imdb Id to next screen.
+        }
+    };
+
     /**
      * Instance of ApiService which will be used to invoke the declared api endpoints.
      */
@@ -54,6 +62,9 @@ public class SearchActivity extends AppCompatActivity {
         // Creating a view reference to items placed in the XML file, we use findViewById()
         // Please refer to https://developer.android.com/reference/android/view/View#findViewById(int)
         editMovieQuery = findViewById(R.id.edit_movie_query);
+
+        // setting the interaction listener interface
+        recyclerAdapter.setInteractionListener(interactionListener);
 
         recyclerMovieSearch = findViewById(R.id.recycler_movie_search);
         recyclerMovieSearch.setAdapter(recyclerAdapter);

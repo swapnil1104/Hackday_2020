@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +28,8 @@ public class MovieSearchRecyclerAdapter extends RecyclerView.Adapter<MovieSearch
 
     private Context context;
 
+    private MovieAdapterInteractionListener interactionListener;
+
     public MovieSearchRecyclerAdapter(Context context) {
         this.context = context;
         this.searchResults = new ArrayList<>();
@@ -46,6 +49,13 @@ public class MovieSearchRecyclerAdapter extends RecyclerView.Adapter<MovieSearch
         notifyDataSetChanged();
     }
 
+    /**
+     * Setter method for the MoveAdapterInteractionListener interface
+     * @param interactionListener
+     */
+    public void setInteractionListener(MovieAdapterInteractionListener interactionListener) {
+        this.interactionListener = interactionListener;
+    }
 
     @NonNull
     @Override
@@ -76,6 +86,13 @@ public class MovieSearchRecyclerAdapter extends RecyclerView.Adapter<MovieSearch
             holder.textType.setVisibility(View.GONE);
         }
 
+        // Adding an OnClick event listener to the Button View
+        holder.buttonDetails.setOnClickListener(v -> {
+            if (interactionListener != null) {
+                interactionListener.onTitleClicked(result.imdbId);
+            }
+        });
+
     }
 
     @Override
@@ -83,8 +100,9 @@ public class MovieSearchRecyclerAdapter extends RecyclerView.Adapter<MovieSearch
         return searchResults.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
+        private Button buttonDetails;
         private ImageView imagePoster;
 
         private TextView textTitle;
@@ -93,6 +111,8 @@ public class MovieSearchRecyclerAdapter extends RecyclerView.Adapter<MovieSearch
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            buttonDetails = itemView.findViewById(R.id.button_details);
 
             imagePoster = itemView.findViewById(R.id.image_poster);
 
