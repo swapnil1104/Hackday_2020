@@ -2,6 +2,7 @@ package com.flipkart.hackdaysamples.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -27,6 +28,11 @@ public class SearchActivity extends AppCompatActivity {
     private EditText editMovieQuery;
 
     /**
+     * recyclerMovieSearch will store the view reference of RecyclerView inflated in activity_search.xml
+     */
+    private RecyclerView recyclerMovieSearch;
+
+    /**
      * Instance of ApiService which will be used to invoke the declared api endpoints.
      */
     private final ApiService apiService = ApiClient.getInstance().create(ApiService.class);
@@ -43,6 +49,8 @@ public class SearchActivity extends AppCompatActivity {
         // Creating a view reference to items placed in the XML file, we use findViewById()
         // Please refer to https://developer.android.com/reference/android/view/View#findViewById(int)
         editMovieQuery = findViewById(R.id.edit_movie_query);
+
+        recyclerMovieSearch = findViewById(R.id.recycler_movie_search);
 
         // EditText uses <b>TextWatcher</b> interface to watch change made over EditText.
         // For doing this, EditText calls the addTextChangedListener() method.
