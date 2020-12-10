@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -41,7 +42,16 @@ public class SearchActivity extends AppCompatActivity {
     private MovieAdapterInteractionListener interactionListener = new MovieAdapterInteractionListener() {
         @Override
         public void onTitleClicked(String imdbId) {
-            // Todo:: launch the a new activity and provide the imdb Id to next screen.
+            // To launch any activity, a new object of Intent class is created and a destination activity class is specified.
+            // Detailed documentation at : https://developer.android.com/training/basics/firstapp/starting-activity
+            Intent movieDetailActivityIntent = new Intent(SearchActivity.this, MovieDetailActivity.class);
+
+            // To send data between activities, we utilise Bundle classes
+            // Detailed documentation at : https://developer.android.com/guide/components/activities/parcelables-and-bundles#sdba
+            movieDetailActivityIntent.putExtra(MovieDetailActivity.IMDB_ID, imdbId);
+
+            // launching the activity
+            startActivity(movieDetailActivityIntent);
         }
     };
 

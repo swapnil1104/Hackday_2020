@@ -17,6 +17,7 @@ import retrofit2.Response;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
+    public static final String IMDB_ID = "IMDB_ID";
 
     /**
      * Instance of ApiService which will be used to invoke the declared api endpoints.
@@ -28,6 +29,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
 
+        String imdbId = getIntent().getStringExtra(MovieDetailActivity.IMDB_ID);
     }
 
 }
