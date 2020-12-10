@@ -1,8 +1,12 @@
 package com.flipkart.hackdaysamples.ui;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +16,7 @@ import com.flipkart.hackdaysamples.R;
 import com.flipkart.hackdaysamples.data.ApiClient;
 import com.flipkart.hackdaysamples.data.ApiService;
 import com.flipkart.hackdaysamples.data.models.MovieDetails;
+import com.flipkart.hackdaysamples.data.storage.SharedPreferenceManager;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
@@ -38,6 +43,10 @@ public class MovieDetailActivity extends AppCompatActivity {
     private TextView textMovieRating;
     private TextView textWriters;
     private TextView textGenre;
+    private Button buttonFavourite;
+
+    @Nullable
+    private MovieDetails details;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +55,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
 
         initializeViews();
+        setEventsForViews();
         fetchMovieInformation();
     }
 
@@ -70,6 +80,20 @@ public class MovieDetailActivity extends AppCompatActivity {
         textMovieRating = findViewById(R.id.text_rating);
         textWriters = findViewById(R.id.text_writers);
         textGenre = findViewById(R.id.text_genre);
+
+        buttonFavourite = findViewById(R.id.button_favourite);
+    }
+
+    private void setEventsForViews() {
+        buttonFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (details != null) {
+                    SharedPreferenceManager.addFavouriteMovie(MovieDetailActivity.this, details);
+
+                }
+            }
+        });
     }
 
     private void getMovieDetails(String imdbId) {
@@ -87,6 +111,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), new Gson().toJson(movieDetails.errorMsg), Toast.LENGTH_LONG).show();
                     } else {
                         if (movieDetails != null) {
+                            details = movieDetails;
                             updateUi(movieDetails);
                         }
                     }

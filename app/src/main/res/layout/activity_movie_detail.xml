@@ -18,6 +18,14 @@
             android:layout_height="wrap_content"
             android:paddingBottom="24dp">
 
+            <Button
+                android:id="@+id/button_favourite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mark Favourite"
+                app:layout_constraintBottom_toBottomOf="@id/image_poster"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <ImageView
                 android:id="@+id/image_poster"
                 android:layout_width="0dp"
