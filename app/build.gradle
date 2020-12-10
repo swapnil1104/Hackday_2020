@@ -27,8 +27,8 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
 
     // RecyclerView dependency is used to display data in a list format
@@ -44,5 +44,9 @@ dependencies {
 
     // Gson is used to parse JSON to Java objects and vice-versa.
     implementation 'com.google.code.gson:gson:2.8.6'
+
+    // Adding Material library for Ui
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'com.google.android.material:material:1.2.1'
 
 }

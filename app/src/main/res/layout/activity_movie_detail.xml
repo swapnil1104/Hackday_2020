@@ -1,203 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MovieDetailActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:cardCornerRadius="12dp"
+        app:cardUseCompatPadding="true">
 
-        <ImageView
-            android:id="@+id/image_poster"
-            android:layout_width="0dp"
-            android:layout_height="600dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/text_rating"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@drawable/blue_bg"
-            android:padding="8dp"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="@id/image_poster"
-            app:layout_constraintTop_toTopOf="@id/image_poster" />
+            android:paddingBottom="24dp">
 
-        <TextView
-            android:id="@+id/text_imdb_rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@drawable/green_bg"
-            android:padding="8dp"
-            app:layout_constraintBottom_toBottomOf="@id/image_poster"
-            app:layout_constraintEnd_toEndOf="@id/image_poster" />
+            <ImageView
+                android:id="@+id/image_poster"
+                android:layout_width="0dp"
+                android:layout_height="600dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelin_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="84dp" />
+            <TextView
+                android:id="@+id/text_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/blue_bg"
+                android:padding="8dp"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toEndOf="@id/image_poster"
+                app:layout_constraintTop_toTopOf="@id/image_poster" />
 
-        <TextView
-            android:id="@+id/text_title_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:padding="4dp"
-            android:text="@string/title"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@id/image_poster" />
+            <TextView
+                android:id="@+id/text_imdb_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_bg"
+                android:padding="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/image_poster"
+                app:layout_constraintEnd_toEndOf="@id/image_poster" />
 
-        <TextView
-            android:id="@+id/text_movie_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBaseline_toBaselineOf="@id/text_title_heading"
-            app:layout_constraintStart_toStartOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@id/image_poster" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelin_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="84dp" />
 
-        <TextView
-            android:id="@+id/text_year_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="@string/year"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@id/text_title_heading" />
+            <TextView
+                android:id="@+id/text_title_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:padding="4dp"
+                android:text="@string/title"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@id/image_poster" />
 
-        <TextView
-            android:id="@id/text_year"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBaseline_toBaselineOf="@id/text_year_heading"
-            app:layout_constraintStart_toEndOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@id/text_movie_title" />
+            <TextView
+                android:id="@+id/text_movie_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBaseline_toBaselineOf="@id/text_title_heading"
+                app:layout_constraintStart_toStartOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@id/image_poster" />
 
-        <TextView
-            android:id="@+id/text_director_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="@string/director"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/text_year_heading" />
+            <TextView
+                android:id="@+id/text_year_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@string/year"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@id/text_title_heading" />
 
-        <TextView
-            android:id="@+id/text_director"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBaseline_toBaselineOf="@id/text_director_heading"
-            app:layout_constraintStart_toEndOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@id/text_year" />
+            <TextView
+                android:id="@id/text_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBaseline_toBaselineOf="@id/text_year_heading"
+                app:layout_constraintStart_toEndOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@id/text_movie_title" />
 
-        <TextView
-            android:id="@+id/text_plot_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="@string/plot"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/text_director_heading" />
+            <TextView
+                android:id="@+id/text_director_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@string/director"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/text_year_heading" />
 
-        <TextView
-            android:id="@+id/text_plot"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBaseline_toBaselineOf="@id/text_plot_heading"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@id/text_director" />
+            <TextView
+                android:id="@+id/text_director"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBaseline_toBaselineOf="@id/text_director_heading"
+                app:layout_constraintStart_toEndOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@id/text_year" />
 
-        <TextView
-            android:id="@+id/text_languages_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="@string/languages"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/text_plot" />
+            <TextView
+                android:id="@+id/text_plot_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@string/plot"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/text_director_heading" />
 
-        <TextView
-            android:id="@+id/text_languages"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBaseline_toBaselineOf="@id/text_languages_heading"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@id/text_plot" />
+            <TextView
+                android:id="@+id/text_plot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBaseline_toBaselineOf="@id/text_plot_heading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@id/text_director" />
+
+            <TextView
+                android:id="@+id/text_languages_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@string/languages"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/text_plot" />
+
+            <TextView
+                android:id="@+id/text_languages"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBaseline_toBaselineOf="@id/text_languages_heading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@id/text_plot" />
 
 
-        <TextView
-            android:id="@+id/text_actors_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="@string/actors"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/text_languages_heading" />
+            <TextView
+                android:id="@+id/text_actors_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@string/actors"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/text_languages_heading" />
 
-        <TextView
-            android:id="@+id/text_actors"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBaseline_toBaselineOf="@id/text_actors_heading"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@id/text_plot" />
+            <TextView
+                android:id="@+id/text_actors"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBaseline_toBaselineOf="@id/text_actors_heading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@id/text_plot" />
 
-        <TextView
-            android:id="@+id/text_writers_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:padding="4dp"
-            android:text="@string/writers"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/text_actors" />
+            <TextView
+                android:id="@+id/text_writers_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="4dp"
+                android:text="@string/writers"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@+id/text_actors" />
 
-        <TextView
-            android:id="@+id/text_writers"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBaseline_toBaselineOf="@id/text_writers_heading"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@id/text_plot" />
+            <TextView
+                android:id="@+id/text_writers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBaseline_toBaselineOf="@id/text_writers_heading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@id/text_plot" />
 
-        <TextView
-            android:id="@+id/text_genre_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="@string/genre"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@id/text_writers_heading" />
+            <TextView
+                android:id="@+id/text_genre_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@string/genre"
+                android:textStyle="bold"
 
-        <TextView
-            android:id="@+id/text_genre"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBaseline_toBaselineOf="@id/text_genre_heading"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/guidelin_vertical"
-            app:layout_constraintTop_toBottomOf="@id/text_plot" />
+                app:layout_constraintEnd_toStartOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@id/text_writers" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            <TextView
+                android:id="@+id/text_genre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBaseline_toBaselineOf="@id/text_genre_heading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guidelin_vertical"
+                app:layout_constraintTop_toBottomOf="@id/text_plot" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.core.widget.NestedScrollView>
