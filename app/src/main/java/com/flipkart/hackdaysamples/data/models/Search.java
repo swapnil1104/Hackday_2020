@@ -5,18 +5,18 @@ import com.google.gson.annotations.SerializedName;
 public class Search {
 
     @SerializedName("Title")
-    String title;
+    public String title;
 
     @SerializedName("Year")
-    String year;
+    public String year;
 
     @SerializedName("imdbID")
-    String imdbId;
+    public String imdbId;
 
     @SerializedName("type")
-    String type;
+    public String type;
 
     @SerializedName("Poster")
-    String posterUrl;
+    public String posterUrl;
 
 }

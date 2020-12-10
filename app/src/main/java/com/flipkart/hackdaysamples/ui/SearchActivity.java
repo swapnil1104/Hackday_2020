@@ -106,12 +106,13 @@ public class SearchActivity extends AppCompatActivity {
 
                     // What is a Toast?
                     // Refer detailed doc: https://developer.android.com/guide/topics/ui/notifiers/toasts
-                    if (searchResponse != null && searchResponse.errorMsg != null && searchResponse.errorMsg.equalsIgnoreCase("true")) {
+                    if (searchResponse != null && searchResponse.errorMsg != null) {
                         Toast.makeText(getApplicationContext(), new Gson().toJson(searchResponse.errorMsg), Toast.LENGTH_LONG).show();
                     } else {
-                        // Todo:: render the search results in a RecyclerView.
+                        if (searchResponse != null && searchResponse.searches != null && searchResponse.searches.size() > 0) {
+                            recyclerAdapter.updateSearchResults(searchResponse.searches);
+                        }
                     }
-
                 }
 
                 @Override
