@@ -9,12 +9,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.flipkart.hackdaysamples.R;
 import com.flipkart.hackdaysamples.data.ApiClient;
 import com.flipkart.hackdaysamples.data.ApiService;
+import com.flipkart.hackdaysamples.data.models.Search;
 import com.flipkart.hackdaysamples.data.models.SearchResponse;
 import com.flipkart.hackdaysamples.ui.adapters.MovieAdapterInteractionListener;
 import com.flipkart.hackdaysamples.ui.adapters.MovieSearchRecyclerAdapter;
@@ -36,6 +39,8 @@ public class SearchActivity extends AppCompatActivity {
      */
     private RecyclerView recyclerMovieSearch;
 
+
+    private Button buttonFavouriteScreen;
 
     private MovieSearchRecyclerAdapter recyclerAdapter = new MovieSearchRecyclerAdapter(this);
 
@@ -101,6 +106,15 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 // no-op
+            }
+        });
+
+        buttonFavouriteScreen = findViewById(R.id.button_favourite_screen);
+        buttonFavouriteScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SearchActivity.this, FavouriteMoviesActivity.class);
+                startActivity(intent);
             }
         });
     }
