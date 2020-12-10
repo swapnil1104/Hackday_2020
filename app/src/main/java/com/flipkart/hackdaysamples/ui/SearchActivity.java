@@ -2,6 +2,7 @@ package com.flipkart.hackdaysamples.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import com.flipkart.hackdaysamples.R;
 import com.flipkart.hackdaysamples.data.ApiClient;
 import com.flipkart.hackdaysamples.data.ApiService;
 import com.flipkart.hackdaysamples.data.models.SearchResponse;
+import com.flipkart.hackdaysamples.ui.adapters.MovieSearchRecyclerAdapter;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
@@ -31,6 +33,10 @@ public class SearchActivity extends AppCompatActivity {
      * recyclerMovieSearch will store the view reference of RecyclerView inflated in activity_search.xml
      */
     private RecyclerView recyclerMovieSearch;
+
+
+
+    private MovieSearchRecyclerAdapter recyclerAdapter = new MovieSearchRecyclerAdapter();
 
     /**
      * Instance of ApiService which will be used to invoke the declared api endpoints.
@@ -51,6 +57,12 @@ public class SearchActivity extends AppCompatActivity {
         editMovieQuery = findViewById(R.id.edit_movie_query);
 
         recyclerMovieSearch = findViewById(R.id.recycler_movie_search);
+        recyclerMovieSearch.setAdapter(recyclerAdapter);
+
+        // What is a layout manager?
+        // https://developer.android.com/guide/topics/ui/layout/recyclerview#plan-your-layout
+        recyclerMovieSearch.setLayoutManager(new LinearLayoutManager(this));
+
 
         // EditText uses <b>TextWatcher</b> interface to watch change made over EditText.
         // For doing this, EditText calls the addTextChangedListener() method.
