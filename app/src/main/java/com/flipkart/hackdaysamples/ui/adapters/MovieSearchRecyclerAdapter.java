@@ -1,5 +1,6 @@
 package com.flipkart.hackdaysamples.ui.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.flipkart.hackdaysamples.R;
 import com.flipkart.hackdaysamples.data.models.Search;
 
@@ -23,11 +25,15 @@ public class MovieSearchRecyclerAdapter extends RecyclerView.Adapter<MovieSearch
 
     private ArrayList<Search> searchResults;
 
-    public MovieSearchRecyclerAdapter() {
+    private Context context;
+
+    public MovieSearchRecyclerAdapter(Context context) {
+        this.context = context;
         this.searchResults = new ArrayList<>();
     }
 
-    public MovieSearchRecyclerAdapter(ArrayList<Search> searchResults) {
+    public MovieSearchRecyclerAdapter(Context context, ArrayList<Search> searchResults) {
+        this.context = context;
         this.searchResults = searchResults;
     }
 
@@ -52,7 +58,9 @@ public class MovieSearchRecyclerAdapter extends RecyclerView.Adapter<MovieSearch
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Search result = searchResults.get(holder.getAdapterPosition());
 
-        // Todo:: How do we use Glide to load poster image in ImageView
+        Glide.with(context)
+                .load(result.posterUrl)
+                .into(holder.imagePoster);
 
         holder.textTitle.setText(result.title);
         holder.textYear.setText(result.year);

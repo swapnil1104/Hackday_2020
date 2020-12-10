@@ -35,8 +35,7 @@ public class SearchActivity extends AppCompatActivity {
     private RecyclerView recyclerMovieSearch;
 
 
-
-    private MovieSearchRecyclerAdapter recyclerAdapter = new MovieSearchRecyclerAdapter();
+    private MovieSearchRecyclerAdapter recyclerAdapter = new MovieSearchRecyclerAdapter(this);
 
     /**
      * Instance of ApiService which will be used to invoke the declared api endpoints.
