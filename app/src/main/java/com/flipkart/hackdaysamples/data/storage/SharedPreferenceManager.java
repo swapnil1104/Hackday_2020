@@ -47,4 +47,12 @@ public class SharedPreferenceManager {
         getInstance(context).edit().putString(FAV_MOVIE_PREF, new Gson().toJson(movieDetails)).apply();
     }
 
+    public static void deleteMovieFromFavourite(Context context, int position, MovieDetails movieDetails) {
+        ArrayList<MovieDetails> movieDetailsArrayList = getFavMovieList(context);
+        if (movieDetailsArrayList.size() > position) {
+            movieDetailsArrayList.remove(position);
+        }
+
+        saveFavouriteMoviesToPref(context, movieDetailsArrayList);
+    }
 }

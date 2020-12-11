@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.flipkart.hackdaysamples.R;
 import com.flipkart.hackdaysamples.data.models.MovieDetails;
 import com.flipkart.hackdaysamples.data.storage.SharedPreferenceManager;
+import com.flipkart.hackdaysamples.ui.adapters.FavouriteMovieAdapterInteractionListener;
 import com.flipkart.hackdaysamples.ui.adapters.FavouriteMovieRecyclerAdapter;
 
 import java.util.ArrayList;
@@ -20,6 +21,14 @@ public class FavouriteMoviesActivity extends AppCompatActivity {
     private TextView textFavouriteCount;
     private RecyclerView recyclerFavourite;
     private FavouriteMovieRecyclerAdapter adapter = new FavouriteMovieRecyclerAdapter(this);
+
+    private FavouriteMovieAdapterInteractionListener interactionListener = new FavouriteMovieAdapterInteractionListener() {
+        @Override
+        public void deleteMovie(int position, MovieDetails movieDetails) {
+            SharedPreferenceManager.deleteMovieFromFavourite(getApplicationContext(), position, movieDetails);
+            loadData();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +51,8 @@ public class FavouriteMoviesActivity extends AppCompatActivity {
 
         recyclerFavourite.setAdapter(adapter);
         recyclerFavourite.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter.setInteractionListener(interactionListener);
         adapter.updateFavouriteMovies(favouriteMovies);
     }
 }

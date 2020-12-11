@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.flipkart.hackdaysamples.R;
 import com.flipkart.hackdaysamples.data.models.MovieDetails;
-import com.flipkart.hackdaysamples.data.models.Search;
 
 import java.util.ArrayList;
 
@@ -28,6 +27,8 @@ public class FavouriteMovieRecyclerAdapter extends RecyclerView.Adapter<Favourit
     private ArrayList<MovieDetails> favouriteMovies;
 
     private Context context;
+
+    private FavouriteMovieAdapterInteractionListener interactionListener;
 
     public FavouriteMovieRecyclerAdapter(Context context) {
         this.context = context;
@@ -48,6 +49,9 @@ public class FavouriteMovieRecyclerAdapter extends RecyclerView.Adapter<Favourit
         notifyDataSetChanged();
     }
 
+    public void setInteractionListener(FavouriteMovieAdapterInteractionListener interactionListener) {
+        this.interactionListener = interactionListener;
+    }
 
     @NonNull
     @Override
@@ -71,6 +75,16 @@ public class FavouriteMovieRecyclerAdapter extends RecyclerView.Adapter<Favourit
         holder.textDirector.setText(result.director);
         holder.textPlot.setText(result.plot);
 
+        holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (interactionListener != null) {
+                    interactionListener.deleteMovie(holder.getAdapterPosition(), result);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -90,6 +104,8 @@ public class FavouriteMovieRecyclerAdapter extends RecyclerView.Adapter<Favourit
         private TextView textActors;
         private TextView textGenre;
 
+        private Button buttonDelete;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -103,6 +119,8 @@ public class FavouriteMovieRecyclerAdapter extends RecyclerView.Adapter<Favourit
             textDirector = itemView.findViewById(R.id.text_director);
             textGenre = itemView.findViewById(R.id.text_genre);
             textActors = itemView.findViewById(R.id.text_actors);
+
+            buttonDelete = itemView.findViewById(R.id.button_delete);
         }
     }
 }
