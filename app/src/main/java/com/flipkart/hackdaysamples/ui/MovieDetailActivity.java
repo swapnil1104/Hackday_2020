@@ -89,8 +89,9 @@ public class MovieDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (details != null) {
+                    Toast.makeText(MovieDetailActivity.this, "Favourite Marked", Toast.LENGTH_SHORT).show();
                     SharedPreferenceManager.addFavouriteMovie(MovieDetailActivity.this, details);
-
+                    buttonFavourite.setEnabled(false);
                 }
             }
         });
